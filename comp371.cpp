@@ -1,10 +1,8 @@
-#include <math.h>
+#include <cmath>
 #include <vector>
-#include <Windows.h>
-#include <gl\glut.h>
+#include <GL/glut.h>
 
 using namespace std;
-
 
 void myInit() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -62,7 +60,7 @@ void mouse_func(int button, int state, int x, int y) {
 }
 
 void myDrawing() {
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glPushMatrix();
     glRotatef(theta[0], 1, 0, 0);
     glRotatef(theta[1], 0, 1, 0);
@@ -75,11 +73,11 @@ void myDrawing() {
 
 int main(int argc, char *argv[]) {
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-    glEnable(GL_DEPTH_TEST);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(500, 500);
     glutInitWindowPosition(0, 0);
     glutCreateWindow("sample");
+    glEnable(GL_DEPTH_TEST);
     glutDisplayFunc(myDrawing);
     glutIdleFunc(idle_func);
     glutMouseFunc(mouse_func);
